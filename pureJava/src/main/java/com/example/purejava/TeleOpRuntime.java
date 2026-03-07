@@ -9,6 +9,11 @@ public class TeleOpRuntime {
     public static void main(String[] args) {
         System.out.println("=== Initializing Robot TeleOp ===");
 
+        // Register maxPower if not already registered in Registry static block
+        if (MetaFieldRegistry.getEntry("maxPower") == null) {
+            MetaFieldRegistry.registerField("maxPower", Double.class, 0.0);
+        }
+
         ParserEngine engine = new ParserEngine();
         String configPath = "pureJava/src/main/java/com/example/purejava/textfiles/GeneralRobotSettings";
 
@@ -26,14 +31,13 @@ public class TeleOpRuntime {
         }
 
         System.out.println("\n--- Final Configured Values ---");
-        printField("RedGoalPos");
-        printField("BlueGoalPos");
-        printField("IntakeActive");
+        printField("redGoalPose");
+        printField("blueGoalPose");
+        printField("intakeActive");
         printField("maxPower");
+        printField("motorName");
 
         System.out.println("\n=== Initialization Complete ===");
-        System.out.println(MetaFieldRegistry.getEntry("BlueGoalPos").value);
-
     }
 
     private static void printField(String name) {

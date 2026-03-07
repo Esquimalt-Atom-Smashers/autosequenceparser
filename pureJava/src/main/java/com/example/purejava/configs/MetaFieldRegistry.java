@@ -31,9 +31,12 @@ public class MetaFieldRegistry {
 
         // Register specific fields with default values
         registerField("maxPower", Double.class, 0.0);
-        registerField("RedGoalPos", Pose2d.class, new Pose2d(-72, 48, 0));
-        registerField("BlueGoalPos", Pose2d.class, new Pose2d(72, 48, 0));
-        registerField("IntakeActive", IntakeSetting.class, new IntakeSetting("NORMAL", true, 0.8));
+        registerField("redGoalPose", Pose2d.class, new Pose2d(-72, 48, 0));
+        registerField("blueGoalPose", Pose2d.class, new Pose2d(72, 48, 0));
+        registerField("intakeActive", IntakeSetting.class, new IntakeSetting("NORMAL", true, 0.8));
+        registerField("motorName", String.class, "motorName");
+//        registerField("aprilTagPose", Pose3d.class, new Pose3d(new Pose2d(-72, 48, 0), 30));
+//        To be documented: line above does not work within current scope
     }
 
     public static void registerType(MetaField<?> typeDef) {

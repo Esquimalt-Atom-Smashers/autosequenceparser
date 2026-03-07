@@ -1,4 +1,6 @@
-RedGoalPos=pose2d(72,72,0)
-BlueGoalPos=0
-IntakeActive=intakeSetting(TOLIET, 67, 0.6)
-maxPower=1.0
+RedGoalPose = pose2d(72, 67, 0)
+BlueGoalPose = pose2d(72, 48, 90)
+IntakeActive = intakeSetting(IDLE, false, 0.6)
+// This is a full line comment
+maxPower = 1.0 // This is a trailing comments
+motorName = flywheelMotor

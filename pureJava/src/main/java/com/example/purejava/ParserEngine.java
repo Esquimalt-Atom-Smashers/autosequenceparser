@@ -25,8 +25,11 @@ public class ParserEngine {
             int lineNumber = 0;
             while ((line = reader.readLine()) != null) {
                 lineNumber++;
-                line = line.trim();
-                if (line.isEmpty() || line.startsWith("#")) continue;
+                
+                // Remove comments starting with // or #
+                line = stripComments(line).trim();
+                
+                if (line.isEmpty()) continue;
 
                 if (line.contains("=")) {
                     handleConfigLine(line, lineNumber);
@@ -37,6 +40,14 @@ public class ParserEngine {
         } catch (IOException e) {
             logs.add("Error reading file: " + e.getMessage());
         }
+    }
+
+    private String stripComments(String line) {
+        int commentIndex = line.indexOf("//");
+        if (commentIndex != -1) {
+            line = line.substring(0, commentIndex);
+        }
+        return line;
     }
 
     private void handleConfigLine(String line, int lineNumber) {
@@ -52,7 +63,6 @@ public class ParserEngine {
 
         MetaField<?> typeDef = MetaFieldRegistry.getTypeDefinition(entry.type);
         if (typeDef == null) {
-            // Handle simple types like Double, Boolean, String if they are not MetaFields
             Object parsedValue = convertSimpleType(value, entry.type, lineNumber);
             if (parsedValue != null) {
                 updateEntryValue(entry, parsedValue);
@@ -99,10 +109,14 @@ public class ParserEngine {
     private String[] splitParams(String params) {
         List<String> result = new ArrayList<>();
         StringBuilder current = new StringBuilder();
+        int parenLevel = 0;
         boolean inQuotes = false;
         for (char c : params.toCharArray()) {
             if (c == '\"') inQuotes = !inQuotes;
-            if (c == ',' && !inQuotes) {
+            if (c == '(' && !inQuotes) parenLevel++;
+            if (c == ')' && !inQuotes) parenLevel--;
+
+            if (c == ',' && !inQuotes && parenLevel == 0) {
                 result.add(current.toString().trim());
                 current.setLength(0);
             } else {
@@ -118,7 +132,10 @@ public class ParserEngine {
             if (type == Double.class || type == double.class) {
                 return Double.parseDouble(val);
             } else if (type == Boolean.class || type == boolean.class) {
-                return Boolean.parseBoolean(val);
+                if (val.equalsIgnoreCase("true")) return true;
+                if (val.equalsIgnoreCase("false")) return false;
+                logs.add("Line " + lineNumber + ": Type Mismatch. Cannot parse '" + val + "' as boolean");
+                return null;
             } else if (type == String.class) {
                 if (val.startsWith("\"") && val.endsWith("\"")) {
                     return val.substring(1, val.length() - 1);
