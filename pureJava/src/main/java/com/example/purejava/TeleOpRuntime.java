@@ -1,0 +1,47 @@
+package com.example.purejava;
+
+import com.example.purejava.configs.MetaFieldRegistry;
+
+import java.util.List;
+
+public class TeleOpRuntime {
+
+    public static void main(String[] args) {
+        System.out.println("=== Initializing Robot TeleOp ===");
+
+        ParserEngine engine = new ParserEngine();
+        String configPath = "pureJava/src/main/java/com/example/purejava/textfiles/GeneralRobotSettings";
+
+        System.out.println("Reading config from: " + configPath);
+        engine.parseConfig(configPath);
+
+        System.out.println("\n--- Parser Logs (Validation/Dry Run) ---");
+        List<String> logs = engine.getLogs();
+        if (logs.isEmpty()) {
+            System.out.println("No errors found.");
+        } else {
+            for (String log : logs) {
+                System.out.println("[ERROR] " + log);
+            }
+        }
+
+        System.out.println("\n--- Final Configured Values ---");
+        printField("RedGoalPos");
+        printField("BlueGoalPos");
+        printField("IntakeActive");
+        printField("maxPower");
+
+        System.out.println("\n=== Initialization Complete ===");
+        System.out.println(MetaFieldRegistry.getEntry("BlueGoalPos").value);
+
+    }
+
+    private static void printField(String name) {
+        MetaFieldRegistry.ConfigEntry<?> entry = MetaFieldRegistry.getEntry(name);
+        if (entry != null) {
+            System.out.println(entry.fieldName + ": " + entry.value);
+        } else {
+            System.out.println(name + ": [Not Registered]");
+        }
+    }
+}

@@ -1,4 +1,4 @@
-package com.example.purejava;
+package com.example.purejava.actions;
 
 public class ActionManager {
     public static class PrintAction implements Action {

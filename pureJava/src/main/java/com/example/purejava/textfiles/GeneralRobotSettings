@@ -1,0 +1,4 @@
+RedGoalPos=pose2d(72,72,0)
+BlueGoalPos=0
+IntakeActive=intakeSetting(TOLIET, 67, 0.6)
+maxPower=1.0
