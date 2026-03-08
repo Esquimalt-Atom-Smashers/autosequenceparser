@@ -1,6 +1,7 @@
 package com.example.purejava;
 
 import com.example.purejava.actions.Action;
+import com.example.purejava.actions.MetaActionRegistry;
 import com.example.purejava.configs.MetaFieldRegistry;
 
 import java.io.File;
@@ -54,7 +55,13 @@ public class AutoRuntime {
         System.out.println("\n--- Parsing " + selectedAuto.getName() + " ---");
         autoParser.parse(selectedAuto);
 
-        // 4. Show Errors/Logs from parsing
+        // 4. Show Errors/Logs from auto action parsing
+        List<String> loadErrors = MetaActionRegistry.getLoadErrors();
+        if (!loadErrors.isEmpty()) {
+            System.out.println("\n[BIG ACTION ERRORS/WARNINGS]:");
+            for (String log : loadErrors) System.out.println("  " + log);
+        }
+
         List<String> configLogs = autoParser.getConfigLogs();
         if (!configLogs.isEmpty()) {
             System.out.println("\n[CONFIG ERRORS/WARNINGS]:");

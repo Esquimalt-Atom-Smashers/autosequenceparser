@@ -14,6 +14,12 @@ public class ActionRegistryRuntime {
         System.out.println("Loading settings from: " + settingsPath);
         MetaActionRegistry.loadSettings(settingsPath);
 
+        List<String> loadErrors = MetaActionRegistry.getLoadErrors();
+        if (!loadErrors.isEmpty()) {
+            System.out.println("\n[BIG ACTION ERRORS/WARNINGS]:");
+            for (String log : loadErrors) System.out.println("  " + log);
+        }
+
         System.out.println("\n--- Registered Actions ---");
         List<String> ids = MetaActionRegistry.getRegisteredIdentifiers();
         for (String id : ids) {
