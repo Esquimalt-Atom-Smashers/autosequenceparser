@@ -1,4 +1,7 @@
 Title=Blue Far
-BLUE.FAR
+Starting=BLUE.FAR
 BLUE.LOAD.INTAKE
 BLUE.THIRD.INTAKE
+
+RedGoalPose = pose2d(0, 0, 0)
+BlueGoalPose = pose2d(0, 0, 0)

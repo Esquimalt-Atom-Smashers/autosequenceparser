@@ -1,6 +1,5 @@
-package com.example.purejava;
+package com.example.purejava.configs;
 
-import com.example.purejava.configs.MetaFieldRegistry;
 import com.example.purejava.configs.types.MetaField;
 
 import java.io.BufferedReader;
@@ -12,7 +11,7 @@ import java.util.List;
 /**
  * Generic engine that handles file I/O, string cleaning, and validation.
  */
-public class ParserEngine {
+public class ConfigParser {
     private final List<String> logs = new ArrayList<>();
 
     /**

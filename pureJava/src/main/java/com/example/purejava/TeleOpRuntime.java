@@ -1,5 +1,6 @@
 package com.example.purejava;
 
+import com.example.purejava.configs.ConfigParser;
 import com.example.purejava.configs.MetaFieldRegistry;
 
 import java.util.List;
@@ -14,7 +15,7 @@ public class TeleOpRuntime {
             MetaFieldRegistry.registerField("maxPower", Double.class, 0.0);
         }
 
-        ParserEngine engine = new ParserEngine();
+        ConfigParser engine = new ConfigParser();
         String configPath = "pureJava/src/main/java/com/example/purejava/textfiles/GeneralRobotSettings";
 
         System.out.println("Reading config from: " + configPath);

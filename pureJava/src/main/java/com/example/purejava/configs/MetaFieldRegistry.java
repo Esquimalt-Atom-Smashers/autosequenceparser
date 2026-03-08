@@ -35,13 +35,13 @@ public class MetaFieldRegistry {
         registerField("blueGoalPose", Pose2d.class, new Pose2d(72, 48, 0));
         registerField("intakeActive", IntakeSetting.class, new IntakeSetting("NORMAL", true, 0.8));
         registerField("motorName", String.class, "motorName");
-//        registerField("aprilTagPose", Pose3d.class, new Pose3d(new Pose2d(-72, 48, 0), 30));
-//        To be documented: line above does not work within current scope
+        
+        // New required fields for Auto
+        registerField("Title", String.class, "");
+        registerField("Starting", String.class, "");
     }
 
     public static void registerType(MetaField<?> typeDef) {
-        // Find the actual class that implements MetaField
-        // For simplicity, we assume the class itself is the type
         typeDefinitions.put(typeDef.getClass(), typeDef);
     }
 

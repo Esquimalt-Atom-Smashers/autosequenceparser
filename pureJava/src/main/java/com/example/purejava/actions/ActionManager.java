@@ -1,5 +1,7 @@
 package com.example.purejava.actions;
 
+import java.util.Locale;
+
 public class ActionManager {
     public static class PrintAction implements Action {
         String message;
@@ -15,5 +17,7 @@ public class ActionManager {
         }
     }
 
-    public static Action goToPoseAction(double x, double y, double h) {return new PrintAction("GO.TO" + x + ", " + y + ", " + h);}
+    public static Action goToPoseAction(double x, double y, double h) {
+        return new PrintAction(String.format(Locale.US, "GOING.TO.POSE(%.2f, %.2f, %.2f)", x, y, h));
+    }
 }
