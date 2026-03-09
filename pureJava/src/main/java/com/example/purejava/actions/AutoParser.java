@@ -1,7 +1,5 @@
-package com.example.purejava;
+package com.example.purejava.actions;
 
-import com.example.purejava.actions.Action;
-import com.example.purejava.actions.MetaActionRegistry;
 import com.example.purejava.configs.ConfigParser;
 import com.example.purejava.configs.MetaFieldRegistry;
 

@@ -1,6 +1,7 @@
 package com.example.purejava;
 
 import com.example.purejava.actions.Action;
+import com.example.purejava.actions.AutoParser;
 import com.example.purejava.actions.MetaActionRegistry;
 import com.example.purejava.configs.MetaFieldRegistry;
 
