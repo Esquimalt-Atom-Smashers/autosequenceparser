@@ -1,0 +1,65 @@
+site_name: Instant Auto
+site_url: https://Bosco-maker.github.io/Instant-Auto/
+site_description: Text-based autonomous programming framework for FTC
+
+theme:
+  name: material
+  logo: logo.png
+  favicon: logo.png
+
+extra_css:
+  - stylesheets/extra.css
+
+nav:
+  - Home: index.md
+  - Simulator: simulator
+  - User Guide:
+      - Introduction: user/index.md
+      - Getting Started: user/getting-started.md
+      - Syntax: user/syntax.md
+      - Actions: user/actions.md
+      - Variables: user/variables.md
+      - Conditions: user/conditions.md
+      - Examples: user/examples.md
+  - Programmer Guide:
+      - Introduction: programmer/index.md
+      - Roadrunner Integration: programmer/roadrunner.md
+      - Variables, Conditions & Hardware: programmer/variables-conditions.md
+      - Subsystems: programmer/subsystems.md
+      - Custom Actions: programmer/custom-actions.md
+      - Example: programmer/example.md
+      - MeepMeep Testbed: programmer/meep-meep-testbed.md
+  - Developer Guide:
+      - Introduction: developer/index.md
+      - Parser: developer/parser.md
+      - Action System: developer/action-system.md
+      - Configuration: developer/configuration.md
+      - Execution:
+          - Accessing & Updating Fields: developer/execution-accessing-updating-fields.md
+          - Actions & Roadrunner Adaptation: developer/execution-actions-roadrunner-adaptation.md
+          - Autonomous Execution: developer/execution-rr-auto.md
+      - Contributing: developer/contributing.md
+  - Reference:
+      - Syntax: reference/syntax.md
+      - Actions: reference/actions.md
+      - API: reference/api.md
+
+plugins:
+  - search
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - admonition
+  - pymdownx.details
+  - pymdownx.tabbed:
+      alternate_style: true
